@@ -268,7 +268,7 @@ static void cpufreq_interactive_timer(unsigned long data)
 	cpu_load = loadadjfreq / pcpu->policy->cur;
 	boosted = now < boostpulse_endtime;
 
-	cpufreq_notify_utilization(pcpu->policy, cpu_load);
+	cpufreq_verify_within_limits;
 
 	if (cpu_load >= go_hispeed_load) {
 		if (pcpu->policy->cur < hispeed_freq) {
@@ -284,7 +284,7 @@ static void cpufreq_interactive_timer(unsigned long data)
 	} else {
 		new_freq = pcpu->policy->min + cpu_load * (pcpu->policy->max - pcpu->policy->min) / 100;
 	}
-	
+
 	if (boosted && new_freq < input_boost_freq)
 		new_freq = input_boost_freq;
 
@@ -339,7 +339,7 @@ static void cpufreq_interactive_timer(unsigned long data)
 
 	if (new_freq == pcpu->policy->max)
 		pcpu->max_freq_hyst_start_time = now;
-	
+
 	if (pcpu->target_freq == new_freq) {
 		spin_unlock_irqrestore(&pcpu->target_freq_lock, flags);
 		goto rearm;
