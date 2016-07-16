@@ -212,9 +212,28 @@ static void mdss_mdp_kcal_update_pcc(struct kcal_lut_data *lut_data)
 	lut_data->blue = lut_data->blue < lut_data->minimum ?
 		lut_data->minimum : lut_data->blue;
 
-
 	mdss_mdp_pp_kcal_update(lut_data);
 
+	memset(&pcc_config, 0, sizeof(struct mdp_pcc_cfg_data));
+
+	pcc_config.version = mdp_pcc_v1_7;
+	pcc_config.block = MDP_LOGICAL_BLOCK_DISP_0;
+	pcc_config.ops = lut_data->enable ?
+		MDP_PP_OPS_WRITE | MDP_PP_OPS_ENABLE :
+			MDP_PP_OPS_WRITE | MDP_PP_OPS_DISABLE;
+	pcc_config.r.r = lut_data->red * PCC_ADJ;
+	pcc_config.g.g = lut_data->green * PCC_ADJ;
+	pcc_config.b.b = lut_data->blue * PCC_ADJ;
+
+	payload = kzalloc(sizeof(struct mdp_pcc_data_v1_7),GFP_USER);
+	payload->r.r = pcc_config.r.r;
+	payload->g.g = pcc_config.g.g;
+	payload->b.b = pcc_config.b.b;
+	pcc_config.cfg_payload = payload;
+
+	if (!mdss_mdp_kcal_store_fb0_ctl()) return;
+	mdss_mdp_pcc_config(fb0_ctl->mfd, &pcc_config, &copyback);
+	kfree(payload);
 }
 
 static void mdss_mdp_kcal_update_pa(struct kcal_lut_data *lut_data)
@@ -595,12 +614,20 @@ static int kcal_ctrl_probe(struct platform_device *pdev)
 		return -ENOMEM;
 	}
 
-
 	lut_data->red = lut_data->green = lut_data->blue = NUM_QLUT;
 	lut_data->minimum = 35;
 	lut_data->enable = 1;
 	lut_data->invert = 0;
 
+	platform_set_drvdata(pdev, lut_data);
+
+	lut_data->enable = 0x1;
+	lut_data->red = DEF_PCC;
+	lut_data->green = DEF_PCC;
+	lut_data->blue = DEF_PCC;
+	lut_data->minimum = 0x23;
+	lut_data->invert = 0x0;
+	lut_data->hue = 0x0;
 	lut_data->sat = DEF_PA;
 	lut_data->val = DEF_PA;
 	lut_data->cont = DEF_PA;
