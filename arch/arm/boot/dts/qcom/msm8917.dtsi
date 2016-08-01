@@ -1899,7 +1899,10 @@
 			#size-cells = <0>;
 
 			qcom,speed-bin = <0>;
+<<<<<<< HEAD
 			qcom,initial-pwrlevel = <3>;
+=======
+>>>>>>> f269a1d1a35a... ARM: dts: msm: Add fmax DDR voting and fmax GPU clock support for MSM8917
 
 			/* TURBO */
 			qcom,gpu-pwrlevel@0 {
@@ -1961,7 +1964,10 @@
 			#size-cells = <0>;
 
 			qcom,speed-bin = <1>;
+<<<<<<< HEAD
 			qcom,initial-pwrlevel = <3>;
+=======
+>>>>>>> f269a1d1a35a... ARM: dts: msm: Add fmax DDR voting and fmax GPU clock support for MSM8917
 
 			/* TURBO */
 			qcom,gpu-pwrlevel@0 {
