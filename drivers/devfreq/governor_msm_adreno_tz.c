@@ -338,6 +338,24 @@ static int tz_init(struct devfreq_msm_adreno_tz_data *priv,
 	return ret;
 }
 
+#ifdef CONFIG_SIMPLE_GPU_ALGORITHM
+extern int simple_gpu_active;
+extern int simple_gpu_algorithm(int level, int *val,
+				struct devfreq_msm_adreno_tz_data *priv);
+#endif
+
+#ifdef CONFIG_ADRENO_IDLER
+extern int adreno_idler(struct devfreq_dev_status stats, struct devfreq *devfreq,
+		 unsigned long *freq);
+#endif
+
+
+#ifdef CONFIG_SIMPLE_GPU_ALGORITHM
+extern int simple_gpu_active;
+extern int simple_gpu_algorithm(int level, int *val,
+				struct devfreq_msm_adreno_tz_data *priv);
+#endif
+
 static int tz_get_target_freq(struct devfreq *devfreq, unsigned long *freq,
 				u32 *flag)
 {
