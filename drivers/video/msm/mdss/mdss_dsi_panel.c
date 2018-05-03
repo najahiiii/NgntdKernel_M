@@ -2891,17 +2891,6 @@ static int mdss_panel_parse_dt(struct device_node *np,
 	mdss_dsi_parse_dcs_cmds(np, &ctrl_pdata->bright_cmds,
 			"qcom,mdss-dsi-panel-ce-bright-command", "qcom,mdss-dsi-panel-ce-command-state");
 
-	mdss_dsi_parse_dcs_cmds(np, &ctrl_pdata->cabc_on_cmds,
-			"qcom,mdss-dsi-panel-cabc-on-command", "qcom,mdss-dsi-panel-cabc-command-state");
-
-	mdss_dsi_parse_dcs_cmds(np, &ctrl_pdata->cabc_off_cmds,
-			"qcom,mdss-dsi-panel-cabc-off-command", "qcom,mdss-dsi-panel-cabc-command-state");
-
-	rc = of_property_read_u32(np, "qcom,mdss-dsi-panel-eye-command-num", &tmp);
-	ctrl_pdata->eye_cmds_num = (!rc ? tmp : 0);
-
-	mdss_dsi_parse_eye_command(np, ctrl_pdata);
-
 	ctrl_pdata->init_last = of_property_read_bool(np, "qcom,mdss-dsi-init-last");
 
 	rc = of_property_read_u32(np, "qcom,adjust-timer-wakeup-ms", &tmp);
