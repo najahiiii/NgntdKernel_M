@@ -200,6 +200,8 @@ dtb-$(CONFIG_ARCH_MSM8917) +=msm8917-rolex.dtb
 #	msm8917-qgp-tmo.dtb \
 #	msm8917-pmi8937-qrd-sku5.dtb
 
+endif
+
 #dtb-$(CONFIG_ARCH_MSM8920) += msm8920-pmi8937-cdp.dtb \
 	msm8920-pmi8937-mtp.dtb \
 	msm8920-pmi8950-cdp.dtb \
