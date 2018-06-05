@@ -587,7 +587,6 @@ err_out:
 	}
 
 	kfree(sd);
-
 	f2fs_balance_fs(sbi, true);
 	return err;
 out:
