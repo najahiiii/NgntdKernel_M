@@ -139,7 +139,6 @@
 	mdm9640-v2-mtp.dtb \
 	mdm9640-v2-pmk8001-mtp.dtb \
 
-
 #dtb-$(CONFIG_ARCH_MDMCALIFORNIUM) += mdmcalifornium-sim.dtb \
 	mdmcalifornium-rumi.dtb \
 	mdmcalifornium-emmc-cdp.dtb \
@@ -319,6 +318,7 @@ endif
 	msm8909-1gb-rcm.dtb \
 	msm8909-pm8916-1gb-rcm.dtb \
 	msm8909-1gb-cdp.dtb \
+	apq8009-ext-codec-dragon.dtb \
 	apq8009-dragon.dtb
 
 ifeq ($(CONFIG_ARM64),y)
