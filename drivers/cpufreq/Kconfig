@@ -139,6 +139,24 @@ config CPU_FREQ_DEFAULT_GOV_ZZMOOVE
  	  frequency lookup tables and optimized scaling triggers instead of
  	  % frequency steps to get smooth up/downscaling dependant on CPU load.
 
+config CPU_FREQ_DEFAULT_GOV_INTERACTIVEX
+	bool "interactivex"
+	select CPU_FREQ_GOV_INTERACTIVEX
+	help
+	  Use the CPUFreq governor 'interactivex' as default. This allows
+	  you to get a full dynamic cpu frequency capable system by simply
+	  loading your cpufreq low-level hardware driver, using the
+	  'interactivex' governor for latency-sensitive workloads.
+
+config CPU_FREQ_DEFAULT_GOV_BLU_ACTIVE
+	bool "blu_active"
+	select CPU_FREQ_GOV_BLU_ACTIVE
+	help
+	  Use the CPUFreq governor 'blu_active' as default. This allows
+	  you to get a full dynamic cpu frequency capable system by simply
+	  loading your cpufreq low-level hardware driver, using the
+	  'interactive' governor for latency-sensitive workloads.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -255,6 +273,26 @@ config CPU_FREQ_GOV_ZZMOOVE
  	  frequency lookup tables and optimized scaling triggers instead of
  	  % frequency steps to get smooth up/downscaling dependant on CPU load.
  	  If in doubt, say N.
+
+config CPU_FREQ_GOV_INTERACTIVEX
+	tristate "'interactivex' cpufreq policy governor"
+	help
+	  Created by kernel developer "Imoseyon". The InteractiveX governor
+	  is based heavily on the Interactive governor, and enhanced with tuned
+	  timer parameters to better balance battery vs. performance. The
+	  InteractiveX governor's defining feature, however, is that it locks
+	  the CPU frequency to the user's lowest defined speed when the screen
+	  is off.
+ 	  If in doubt, say N.
+
+config CPU_FREQ_GOV_BLU_ACTIVE
+	tristate "'blu_active' cpufreq policy governor"
+	help
+	  'blu_active' - This driver adds a dynamic cpufreq policy governor
+	  interactive workloads.
+	  To compile this driver as a module, choose M here: the
+	  module will be called cpufreq_blu_active.
+	  designed for latency-sensitive workloads.
 
 comment "CPU frequency scaling drivers"
 
