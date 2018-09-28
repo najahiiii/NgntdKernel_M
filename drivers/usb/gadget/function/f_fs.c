@@ -3154,7 +3154,6 @@ static int ffs_func_setup(struct usb_function *f,
 	ffs->ev.setup.wIndex = cpu_to_le16(ret);
 	__ffs_event_add(ffs, FUNCTIONFS_SETUP);
 	spin_unlock_irqrestore(&ffs->ev.waitq.lock, flags);
-
 	return 0;
 }
 
