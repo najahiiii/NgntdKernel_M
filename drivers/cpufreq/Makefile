@@ -20,6 +20,8 @@ obj-$(CONFIG_CPU_FREQ_GOV_LIONFISH)	+= cpufreq_lionfish.o
 obj-$(CONFIG_CPU_FREQ_GOV_ALUCARD)	+= cpufreq_alucard.o
 obj-$(CONFIG_CPU_BOOST)			+= cpu-boost.o
 obj-$(CONFIG_CPU_FREQ_GOV_ELECTRON)	+= cpufreq_electron.o
+obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVEPLUS) += cpufreq_interactiveplus.o
+obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVEB)	+= cpufreq_interactiveb.o
 obj-$(CONFIG_CPU_BOOST)			+= cpu-boost.o
 obj-$(CONFIG_CPUFREQ_DT)		+= cpufreq-dt.o
 

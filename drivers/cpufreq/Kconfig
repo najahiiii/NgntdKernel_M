@@ -1,4 +1,4 @@
-menu "CPU Frequency scaling"
+,menu "CPU Frequency scaling"
 
 config CPU_FREQ
 	bool "CPU Frequency scaling"
@@ -176,6 +176,17 @@ config CPU_FREQ_DEFAULT_GOV_ELECTRON
 	  you to get a full dynamic cpu frequency capable system by simply
 	  loading your cpufreq low-level hardware driver, using the
 	  'electron' governor for latency-sensitive workloads.
+
+config CPU_FREQ_DEFAULT_GOV_INTERACTIVEPLUS
+        bool "interactiveplus"
+        select CPU_FREQ_GOV_INTERACTIVEPLUS
+        select CPU_FREQ_GOV_PERFORMANCE
+	help
+
+config CPU_FREQ_DEFAULT_GOV_INTERACTIVEB
+	bool "interactiveb"
+	select CPU_FREQ_GOV_INTERACTIVEB
+	help
 
 endchoice
 
@@ -360,6 +371,16 @@ config CPU_FREQ_GOV_ELECTRON
 	depends on CPU_FREQ
 	help
 	  'electron' - another tuned interactive with extra options
+
+config CPU_FREQ_GOV_INTERACTIVEPLUS
+        tristate "'interactiveplus' cpufreq policy governor"
+	select CPU_FREQ_TABLE
+	select CPU_FREQ_GOV_COMMON
+        help
+          'interactiveplus' - This driver adds a dynamic cpufreq policy governor designed for latency-sensitive workloads.
+
+config CPU_FREQ_GOV_INTERACTIVEB
+	tristate "'interactiveb' cpufreq policy governor"
 
 config CPU_BOOST
 	tristate "Event base short term CPU freq boost"
