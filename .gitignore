@@ -36,10 +36,12 @@
 modules.builtin
 Module.symvers
 *.dwo
+*.sh
 
 #
 # Top-level generic files
 #
+/hasil
 /tags
 /TAGS
 /linux
