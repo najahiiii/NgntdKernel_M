@@ -502,6 +502,7 @@ int usb_driver_claim_interface(struct usb_driver *driver,
 	struct device *dev = &iface->dev;
 	struct usb_device *udev;
 	int retval = 0;
+	int lpm_disable_error;
 
 	if (dev->driver)
 		return -EBUSY;
@@ -521,7 +522,6 @@ int usb_driver_claim_interface(struct usb_driver *driver,
 				__func__, driver->name);
 		return -ENOMEM;
 	}
-
 	/* Claimed interfaces are initially inactive (suspended) and
 	 * runtime-PM-enabled, but only if the driver has autosuspend
 	 * support.  Otherwise they are marked active, to prevent the
