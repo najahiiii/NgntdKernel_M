@@ -34,6 +34,7 @@
 *.gcno
 *.ll
 *.conf
+*.txt
 modules.builtin
 Module.symvers
 *.dwo
