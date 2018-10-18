@@ -10,6 +10,7 @@
 # Normal rules
 #
 .*
+*.txt
 *.o
 *.o.*
 *.a
@@ -42,6 +43,7 @@ Module.symvers
 #
 # Top-level generic files
 #
+/out
 /hasil
 /tags
 /TAGS
