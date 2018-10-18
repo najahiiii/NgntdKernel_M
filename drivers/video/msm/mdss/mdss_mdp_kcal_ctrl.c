@@ -201,8 +201,6 @@ static void mdss_mdp_kcal_update_pcc(struct kcal_lut_data *lut_data)
 	lut_data->blue = lut_data->blue < lut_data->minimum ?
 		lut_data->minimum : lut_data->blue;
 
-	mdss_mdp_pp_kcal_update(lut_data);
-
 	memset(&pcc_config, 0, sizeof(struct mdp_pcc_cfg_data));
 
 	pcc_config.version = mdp_pcc_v1_7;
@@ -554,11 +552,6 @@ static int kcal_ctrl_probe(struct platform_device *pdev)
 			__func__);
 		return -ENOMEM;
 	}
-
-	lut_data->red = lut_data->green = lut_data->blue = NUM_QLUT;
-	lut_data->minimum = 35;
-	lut_data->enable = 1;
-	lut_data->invert = 0;
 
 	platform_set_drvdata(pdev, lut_data);
 
