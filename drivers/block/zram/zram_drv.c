@@ -1309,10 +1309,11 @@ static void destroy_devices(unsigned int nr)
 		blk_cleanup_queue(zram->disk->queue);
 		del_gendisk(zram->disk);
 		put_disk(zram->disk);
+	}
 
-		kfree(zram_devices);
-		unregister_blkdev(zram_major, "zram");
-		pr_info("Destroyed %u device(s)\n", nr);
+	kfree(zram_devices);
+	unregister_blkdev(zram_major, "zram");
+	pr_info("Destroyed %u device(s)\n", nr);
 }
 
 static int __init zram_init(void)
